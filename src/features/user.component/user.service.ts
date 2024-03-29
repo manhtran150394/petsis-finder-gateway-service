@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { firstValueFrom } from 'rxjs';
+import { CreateUserRequestDTO } from 'src/dtos/create-user-request.dto';
 
 @Injectable()
 export class UserService {
@@ -8,9 +9,10 @@ export class UserService {
     @Inject('USER_SERVICE') private readonly userClient: ClientProxy,
   ) {}
 
-  async createUserProfile() {
+  async createUser(reqData: CreateUserRequestDTO) {
+    console.log(reqData);
     return await firstValueFrom(
-      this.userClient.send({ cmd: 'create_user_profile' }, {}),
+      this.userClient.send({ cmd: 'create_user' }, reqData),
     );
   }
 }
