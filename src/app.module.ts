@@ -16,7 +16,6 @@ import { UserModule } from './features/user.component/user.module';
         return ClientProxyFactory.create({
           transport: Transport.TCP,
           options: {
-            host: 'localhost',
             port: 3010,
           },
         });
