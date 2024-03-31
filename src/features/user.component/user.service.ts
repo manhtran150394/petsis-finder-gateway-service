@@ -10,7 +10,6 @@ export class UserService {
   ) {}
 
   async createUser(reqData: CreateUserRequestDTO) {
-    console.log(reqData);
     return await firstValueFrom(
       this.userClient.send({ cmd: 'create_user' }, reqData),
     );
