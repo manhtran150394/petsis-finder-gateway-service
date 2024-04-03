@@ -3,10 +3,16 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ClientProxyFactory, Transport } from '@nestjs/microservices';
 import { UserModule } from './features/user.component/user.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Global()
 @Module({
-  imports: [UserModule],
+  imports: [
+    ConfigModule.forRoot({
+      envFilePath: ['.env'],
+    }),
+    UserModule,
+  ],
   controllers: [AppController],
   providers: [
     AppService,
